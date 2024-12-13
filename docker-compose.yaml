@@ -8,7 +8,9 @@ services:
     volumes:
       - ~/repos/sim-one:/app
     environment:
-      - TIME_MULTIPLIER=1.0  # Default multiplier (can be overridden)
-    command: python main.py
-
+      - TIME_MULTIPLIER=1.0
+      - DISPLAY=${DISPLAY}  # For X11 forwarding
+    command: >
+      bash -c "pip install pygame &&
+              python main.py"
 

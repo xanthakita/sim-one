@@ -1,5 +1,6 @@
 from field import Field
 from resource_orchestrator import ResourceOrchestrator
+from display import Display
 
 def main():
     # Initialize a 1-acre field (208x208 grid)
@@ -14,11 +15,9 @@ def main():
     # Spread the flowers across the field
     resource_orchestrator.spread_resources()
 
-    # Display the field and resources
-    print("Field with Resources:")
-    field.display()
-    print("\nResources:")
-    resource_orchestrator.display_resources()
+    # Run the graphical display
+    display = Display(field)
+    display.run()
 
 if __name__ == "__main__":
     main()
