@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  simulation:
+    image: python:3.11-slim
+    container_name: bee_simulation
+    working_dir: /app
+    volumes:
+      - ~/repos/sim-one:/app
+    environment:
+      - TIME_MULTIPLIER=1.0  # Default multiplier (can be overridden)
+    command: python main.py
+
+
