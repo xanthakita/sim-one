@@ -1,23 +1,25 @@
 from field import Field
-from resource_orchestrator import ResourceOrchestrator
+from hive_orchestrator import HiveOrchestrator, QueenBee
 from display import Display
+import os
 
 def main():
-    # Initialize a 1-acre field (208x208 grid)
+    # Initialize the field
     field = Field()
 
-    # Define the resource type: ("flower", value_collected=1, number_of_collections=10)
-    flower_type = ("flower", 1, 10)
+    # Initialize the hive orchestrator
+    hive = HiveOrchestrator(field)
 
-    # Create a Resource Orchestrator to manage 50 flowers
-    resource_orchestrator = ResourceOrchestrator(field, flower_type, count=50)
+    # Add the queen bee
+    queen = QueenBee(hive)
+    hive.add_bee(queen)
+    hive.queen = queen
 
-    # Spread the flowers across the field
-    resource_orchestrator.spread_resources()
-
-    # Run the graphical display
-    display = Display(field)
-    display.run()
+    # Run the simulation
+    display = Display(field, os.getenv("TIME_MULTIPLIER", 1.0))
+    while True:
+        hive.update()
+        display.draw_field()
 
 if __name__ == "__main__":
     main()
