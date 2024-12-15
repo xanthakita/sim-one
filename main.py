@@ -9,17 +9,21 @@ def main():
 
     # Initialize the hive orchestrator
     hive = HiveOrchestrator(field)
+    field.hive = hive  # Add reference to hive in field
+
 
     # Add the queen bee
     queen = QueenBee(hive)
     hive.add_bee(queen)
     hive.queen = queen
+    print(f"Queen added to hive at: ({queen.x}, {queen.y})")  # Add debug print
 
-    # Run the simulation
+    # Initialize the display
     display = Display(field, os.getenv("TIME_MULTIPLIER", 1.0))
-    while True:
-        hive.update()
-        display.draw_field()
+
+    # Start the display loop (this will handle the initialization)
+    display.run()  # This method contains the main game loop
 
 if __name__ == "__main__":
     main()
+    

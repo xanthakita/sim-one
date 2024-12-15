@@ -11,6 +11,5 @@ services:
       - TIME_MULTIPLIER=1.0
       - DISPLAY=${DISPLAY}  # For X11 forwarding
     command: >
-      bash -c "pip install pygame &&
-              python main.py"
-
+      bash -c "pip install pygame numpy &&
+      python main.py"
